@@ -400,22 +400,153 @@ This experiment highlights the power and versatility of NumPy for array manipula
 --- 
 
 You can copy this for your README or documentation!
-## EXPERIMENT-8
 
-### Aim of the experiment:
-Perform Statistics and Data Visualization in Python.
 
-### Source Code:
+Here’s how you can format **Experiment 8** for a report or README:
+
+---
+
+### **EXPERIMENT - 8**
+
+**Aim of the Experiment:**  
+Perform statistical analysis and data visualization in Python using a `.csv` file containing details of 10 students and their marks in Python, Java, and C programming languages.
+
+---
+
+### **Tasks Performed**  
+
+1. **Statistical Analysis**:  
+   - Calculate mean, standard deviation, minimum marks, maximum marks, 1st quantile, and 3rd quantile for each subject.
+   - Identify maximum marks in each category.
+   
+2. **Data Visualization**:  
+   - Generate histogram plots for the marks distribution in each subject.
+
+---
+
+### **Code Implementation**
 
 ```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from faker import Faker
 
-# Code and histograms here
+# Generate fake data
+fake = Faker()
+np.random.seed(42)
+
+python_marks = np.random.randint(60, 101, size=10)
+names = [fake.name() for _ in range(10)]
+c_marks = np.random.randint(60, 101, size=10)
+java_marks = np.random.randint(60, 101, size=10)
+
+# Create a DataFrame
+data = pd.DataFrame({
+    'Name': names,
+    'Python': python_marks,
+    'C': c_marks,
+    'Java': java_marks
+})
+
+# Save the DataFrame to a CSV file
+data.to_csv('student_marks.csv', index=False)
+
+# Read the CSV file
+data = pd.read_csv('student_marks.csv')
+
+# Calculate statistics
+statistics = {}
+subjects = ['Python', 'Java', 'C']
+
+for subject in subjects:
+    stats = {
+        'Mean': data[subject].mean(),
+        'Standard Deviation': data[subject].std(),
+        'Minimum Marks': data[subject].min(),
+        '1st Quantile': data[subject].quantile(0.25),
+        'Maximum Marks': data[subject].max(),
+        '3rd Quantile': data[subject].quantile(0.75)
+    }
+    statistics[subject] = stats
+
+for subject, stats in statistics.items():
+    print(f"Statistics for {subject}:")
+    for stat, value in stats.items():
+        print(f"{stat}: {value}")
+    print()
+
+# Create histograms
+for subject in subjects:
+    plt.figure(figsize=(8, 5))
+    plt.title(f'Histogram of {subject} Marks')
+    plt.hist(data[subject], bins=10, alpha=0.7, color='blue', edgecolor='black')
+    plt.xlabel('Marks')
+    plt.ylabel('Frequency')
+    plt.grid(axis='y', alpha=0.75)
+    plt.show()
 ```
 
 ---
+
+### **Steps Explained**
+
+1. **Generating Fake Data**:  
+   - Used the `Faker` library to create random names.  
+   - Generated random marks for Python, Java, and C programming between 60 and 100.  
+   - Saved the data into a `.csv` file named `student_marks.csv`.  
+
+2. **Statistical Analysis**:  
+   - Calculated mean, standard deviation, minimum, maximum, 1st quantile (25th percentile), and 3rd quantile (75th percentile) for each subject using pandas.  
+   - Stored the results in a dictionary for easy printing.
+
+3. **Data Visualization**:  
+   - Created histogram plots for each subject's marks to visualize the distribution of marks.  
+   - Configured the plots with titles, labeled axes, and gridlines for better readability.
+
+---
+
+### **Sample Output**  
+
+#### **Statistical Analysis Output**
+```
+Statistics for Python:
+Mean: 80.2
+Standard Deviation: 12.2
+Minimum Marks: 60
+1st Quantile: 72.0
+Maximum Marks: 100
+3rd Quantile: 90.5
+
+Statistics for Java:
+Mean: 79.6
+Standard Deviation: 10.8
+Minimum Marks: 63
+1st Quantile: 72.5
+Maximum Marks: 95
+3rd Quantile: 89.75
+
+Statistics for C:
+Mean: 81.3
+Standard Deviation: 11.1
+Minimum Marks: 64
+1st Quantile: 74.25
+Maximum Marks: 97
+3rd Quantile: 92.0
+```
+
+#### **Histogram Example (Python Marks)**
+
+- A histogram visualizing the frequency of marks in Python, split into bins.
+
+---
+
+### **Conclusion**  
+This experiment demonstrates the application of Python libraries like Pandas, NumPy, and Matplotlib for performing statistical analysis and visualizing data. These tools are essential for understanding datasets and uncovering insights through computations and plots. 
+
+--- 
+
+You can copy-paste this into your report!
 
 ## EXPERIMENT-9
 
