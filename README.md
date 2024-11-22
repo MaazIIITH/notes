@@ -246,19 +246,25 @@ data.to_csv("Synthetic_Data.csv")
 
 ---
 
-## EXPERIMENT-7
-
-### Source Code (Selected Parts):
-
-
-
-Here's the solution to Question 7 rewritten in the previous format you requested:
+Here's how you can format **Experiment 7** for a report or README:
 
 ---
 
-### **Theory:**
+### **EXPERIMENT - 7**
 
-#### **Part A**
+**Aim of the Experiment:**  
+To explore and perform various operations on 2D arrays using the NumPy library in Python.  
+
+---
+
+**Theory:**  
+NumPy is a powerful Python library used for numerical computations. It provides support for creating and manipulating arrays, performing statistical operations, and working with multidimensional data structures. This experiment demonstrates several key operations on 2D arrays, such as generating arrays, computing sums, means, and transposing arrays.
+
+---
+
+### **Code Snippets and Descriptions**
+
+#### **A> Generate a Random 2D Array**
 ```python
 import numpy as np
 
@@ -267,8 +273,12 @@ random_array = np.random.randint(1, 51, size=(4, 5))
 print("Random 2D array is:")
 print(random_array)
 ```
+**Description:**  
+- Creates a 4x5 2D array of random integers between 1 and 50.
 
-#### **Part B**
+---
+
+#### **B> Calculate the Total Sum of Array Elements**
 ```python
 import numpy as np
 
@@ -280,8 +290,12 @@ print(random_array)
 total_sum = np.sum(random_array)
 print(f"Sum of all elements: {total_sum}")
 ```
+**Description:**  
+- Computes and displays the total sum of all elements in the array.
 
-#### **Part C**
+---
+
+#### **C> Calculate Sum, Maximum, and Mean of Array Elements**
 ```python
 import numpy as np
 
@@ -299,11 +313,93 @@ print(f"Maximum value in the array: {max_value}")
 mean_value = np.mean(random_array)
 print(f"Mean value of the array: {mean_value}")
 ```
+**Description:**  
+- Computes the sum, maximum value, and mean value of the array elements.
+
+---
+
+#### **D> Calculate the Mean of Array Elements**
+```python
+import numpy as np
+
+random_array = np.random.randint(1, 51, size=(4, 5))
+
+print("2D Array:")
+print(random_array)
+
+mean_value = np.mean(random_array)
+print(f"Mean of array elements: {mean_value}")
+```
+**Description:**  
+- Calculates and displays the mean of the array elements.
+
+---
+
+#### **E> Compute Row-Wise Sums**
+```python
+import numpy as np
+
+random_array = np.random.randint(1, 51, size=(4, 5))
+
+print("2D Array:")
+print(random_array)
+
+row_sums = np.sum(random_array, axis=1)
+print("Sum of elements in each row:")
+print(row_sums)
+```
+**Description:**  
+- Calculates the sum of array elements for each row separately.
+
+---
+
+#### **F> Transpose a 2D Array**
+```python
+import numpy as np
+
+random_array = np.random.randint(1, 51, size=(4, 5))
+
+print("Original 2D Array:")
+print(random_array)
+
+transposed_array = random_array.T
+
+print("Transposed 2D Array:")
+print(transposed_array)
+```
+**Description:**  
+- Transposes the 2D array (i.e., swaps rows and columns).
+
+---
+
+#### **G> Filter Array Elements Greater Than 25**
+```python
+import numpy as np
+
+random_array = np.random.randint(1, 51, size=(4, 5))
+
+print("2D Array:")
+print(random_array)
+
+mask_greater_than_25 = random_array > 25
+print("Boolean mask of elements > 25:")
+print(mask_greater_than_25)
+
+filtered_elements = random_array[mask_greater_than_25]
+print("Elements greater than 25:")
+print(filtered_elements)
+```
+**Description:**  
+- Filters and displays elements of the array greater than 25 using a boolean mask.
+
+---
+
+**Conclusion:**  
+This experiment highlights the power and versatility of NumPy for array manipulation and statistical operations. Each code snippet demonstrates a unique operation, reinforcing the concepts of data handling in Python.
 
 --- 
 
-If you need anything else or adjustments to the format, let me know!
-
+You can copy this for your README or documentation!
 ## EXPERIMENT-8
 
 ### Aim of the experiment:
