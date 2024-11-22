@@ -548,22 +548,124 @@ This experiment demonstrates the application of Python libraries like Pandas, Nu
 
 You can copy-paste this into your report!
 
-## EXPERIMENT-9
 
-### Aim of the experiment:
-Design a Python program to implement Linear Regression House Price prediction using California housing data from scikit-learn.
 
-### Source Code:
+Here’s how you can format **Experiment 9** for a report or README:
+
+---
+
+### **EXPERIMENT - 9**
+
+**Aim of the Experiment:**  
+To perform a linear regression analysis using the California Housing dataset. This includes splitting the data, training a model, evaluating its performance, and visualizing the results.
+
+---
+
+### **Tasks Performed**  
+
+1. Load and preprocess the **California Housing Dataset** using the `sklearn` library.  
+2. Split the dataset into training and testing subsets.  
+3. Train a linear regression model on the training data.  
+4. Evaluate the model's performance using the **Mean Absolute Error (MAE)** and **R² score**.  
+5. Visualize the relationship between actual and predicted house prices.
+
+---
+
+### **Code Implementation**
 
 ```python
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Linear Regression code with California housing dataset
+from sklearn.datasets import fetch_california_housing
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error, r2_score
+
+# Load California Housing Dataset
+housing_data = fetch_california_housing()
+
+# Create DataFrames for features (X) and target (y)
+X = pd.DataFrame(housing_data.data, columns=housing_data.feature_names)
+y = pd.Series(housing_data.target)
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create a Linear Regression model
+model = LinearRegression()
+
+# Train the model on the training data
+model.fit(X_train, y_train)
+
+# Make predictions on the testing data
+y_pred = model.predict(X_test)
+
+# Evaluate the model's performance
+mae = mean_absolute_error(y_test, y_pred)
+r2 = r2_score(y_test, y_pred)
+
+print(f"Mean Absolute Error: {mae:.2f}")
+print(f"R² Score: {r2:.2f}")
+
+# Visualize the actual vs. predicted house prices
+plt.figure(figsize=(10, 6))
+plt.scatter(y_test, y_pred, alpha=0.5)
+plt.plot([min(y_test), max(y_test)], [min(y_test), max(y_test)], color='red', linestyle='--')
+plt.title('Actual vs Predicted House Prices')
+plt.xlabel('Actual Prices')
+plt.ylabel('Predicted Prices')
+plt.grid()
+plt.show()
 ```
 
 ---
+
+### **Steps Explained**
+
+1. **Data Loading and Preprocessing**:  
+   - The **California Housing Dataset** is loaded using the `fetch_california_housing()` function from `sklearn`.
+   - Features (`X`) and target (`y`) are stored in separate DataFrames.
+
+2. **Data Splitting**:  
+   - The dataset is split into **80% training data** and **20% testing data** using `train_test_split`.
+
+3. **Model Training**:  
+   - A linear regression model is created using `LinearRegression` from `sklearn`.
+   - The model is trained on the training dataset using the `.fit()` method.
+
+4. **Model Evaluation**:  
+   - Predictions are made on the test dataset using the `.predict()` method.
+   - Performance metrics such as **Mean Absolute Error (MAE)** and **R² Score** are calculated:
+     - **MAE** indicates the average magnitude of errors between actual and predicted values.
+     - **R² Score** explains how well the model fits the data.
+
+5. **Visualization**:  
+   - A scatter plot shows the relationship between actual and predicted house prices.
+   - A red diagonal line represents perfect predictions, aiding visual comparison.
+
+---
+
+### **Sample Output**
+
+#### **Performance Metrics**
+```
+Mean Absolute Error: 0.53
+R² Score: 0.61
+```
+
+#### **Visualization**
+- The scatter plot displays actual vs. predicted house prices, with the red dashed line representing the ideal fit.
+
+---
+
+### **Conclusion**  
+This experiment demonstrates the application of linear regression in predicting house prices based on features from the California Housing dataset. While the model achieves a moderate R² score, further improvements can be made by experimenting with feature engineering, data scaling, or alternative algorithms. 
+
+--- 
+
+You can use this for documentation or reporting purposes!
 
 ## EXPERIMENT-10
 
