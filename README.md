@@ -250,18 +250,59 @@ data.to_csv("Synthetic_Data.csv")
 
 ### Source Code (Selected Parts):
 
+
+
+Here's the solution to Question 7 rewritten in the previous format you requested:
+
+---
+
+### **Theory:**
+
+#### **Part A**
 ```python
-# Part A
 import numpy as np
 
 random_array = np.random.randint(1, 51, size=(4, 5))
+
 print("Random 2D array is:")
 print(random_array)
-
-# Add additional parts (B-G) as required.
 ```
 
----
+#### **Part B**
+```python
+import numpy as np
+
+random_array = np.random.randint(1, 51, size=(4, 5))
+
+print("2D Array:")
+print(random_array)
+
+total_sum = np.sum(random_array)
+print(f"Sum of all elements: {total_sum}")
+```
+
+#### **Part C**
+```python
+import numpy as np
+
+random_array = np.random.randint(1, 51, size=(4, 5))
+
+print("2D Array:")
+print(random_array)
+
+total_sum = np.sum(random_array)
+print(f"Sum of all elements: {total_sum}")
+
+max_value = np.max(random_array)
+print(f"Maximum value in the array: {max_value}")
+
+mean_value = np.mean(random_array)
+print(f"Mean value of the array: {mean_value}")
+```
+
+--- 
+
+If you need anything else or adjustments to the format, let me know!
 
 ## EXPERIMENT-8
 
