@@ -554,12 +554,113 @@ Here’s how you can format **Experiment 9** for a report or README:
 
 ---
 
-### **EXPERIMENT - 9**
 
-**Aim of the Experiment:**  
-To perform a linear regression analysis using the California Housing dataset. This includes splitting the data, training a model, evaluating its performance, and visualizing the results.
+
+Here’s how to structure **Experiment 10** for a report or README:
 
 ---
+
+### **EXPERIMENT - 10**
+
+**Aim of the Experiment:**  
+To implement a basic recommendation system using **Non-Negative Matrix Factorization (NMF)** and cosine similarity, based on user ratings for movies.
+
+---
+
+### **Tasks Performed**  
+
+1. Create a user-item matrix from a given dataset of user movie ratings.  
+2. Split the data into training and testing sets.  
+3. Use **Non-Negative Matrix Factorization (NMF)** to factorize the user-item matrix.  
+4. Compute cosine similarity between user preferences and movie features for recommendations.  
+5. Generate personalized movie recommendations.
+
+---
+
+### **Code Implementation**
+
+```python
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.decomposition import NMF
+
+# Create a dataset
+data = {
+    'user_id': [1, 1, 1, 2, 2, 2, 3, 3, 3],
+    'movie_id': [101, 102, 103, 101, 102, 103, 101, 102, 103],
+    'rating': [5, 4, 3, 4, 5, 3, 3, 4, 5]
+}
+
+df = pd.DataFrame(data)
+
+# Create a user-item matrix
+user_item_matrix = pd.pivot_table(df, values='rating', index='user_id', columns='movie_id')
+
+# Split data into training and testing sets
+train_matrix, test_matrix = train_test_split(user_item_matrix, test_size=0.2, random_state=42)
+
+# Apply Non-Negative Matrix Factorization (NMF)
+nmf_model = NMF(n_components=2, random_state=42)
+nmf_model.fit(train_matrix)
+
+# Function to make recommendations
+def make_recommendations(user_id, num_recommendations):
+    user_factors = nmf_model.transform(train_matrix)[user_id - 1].reshape(1, -1)
+    movie_factors = nmf_model.components_.T
+    movie_similarities = cosine_similarity(user_factors, movie_factors).flatten()
+    recommended_movies = np.argsort(-movie_similarities)[:num_recommendations]
+    return recommended_movies
+
+# Generate recommendations for a specific user
+user_id = 1
+num_recommendations = 3
+recommended_movies = make_recommendations(user_id, num_recommendations)
+
+print(f"Recommended movies for user {user_id}: {recommended_movies}")
+```
+
+---
+
+### **Steps Explained**
+
+1. **Dataset Creation**:  
+   - Created a sample dataset with `user_id`, `movie_id`, and `rating` to simulate user preferences for movies.
+
+2. **User-Item Matrix**:  
+   - Transformed the dataset into a **user-item matrix** where rows represent users and columns represent movies, with ratings as values.
+
+3. **Data Splitting**:  
+   - Split the user-item matrix into training and testing sets using `train_test_split`.
+
+4. **Matrix Factorization using NMF**:  
+   - Applied **Non-Negative Matrix Factorization (NMF)** to decompose the matrix into two smaller matrices:
+     - **User factors**: Represent user preferences.
+     - **Movie factors**: Represent movie features.
+
+5. **Cosine Similarity for Recommendations**:  
+   - Calculated cosine similarity between user preferences and movie features to determine the most relevant movies for a user.
+   - Recommended movies based on the highest similarity scores.
+
+---
+
+### **Sample Output**
+
+#### **Recommended Movies**
+```
+Recommended movies for user 1: [0, 1, 2]
+```
+(*Note: The movie indices correspond to the positions of the movies in the user-item matrix.*)
+
+---
+
+### **Conclusion**  
+This experiment demonstrates how to build a simple recommendation system using NMF and cosine similarity. Such systems are widely used in applications like e-commerce, streaming platforms, and online services to provide personalized suggestions. 
+
+---
+
+This format is structured for documentation or reporting purposes! Let me know if you’d like additional refinements.
 
 ### **Tasks Performed**  
 
